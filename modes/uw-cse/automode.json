@@ -1,0 +1,29 @@
+{
+  "headMode": "advisedby(+T5,+T4)",
+  "bodyModes": [
+    "student(+T5)",
+    "inphase(+T5,#T28)",
+    "inphase(+T5,-T28)",
+    "inphase(-T5,+T28)",
+    "yearsinprogram(+T5,-T47)",
+    "yearsinprogram(-T5,+T47)",
+    "professor(+T4)",
+    "hasposition(+T4,#T33)",
+    "hasposition(+T4,-T33)",
+    "hasposition(-T4,+T33)",
+    "courselevel(-T12,+T58)",
+    "courselevel(+T12,#T58)",
+    "courselevel(+T12,-T58)",
+    "taughtby(-T12,+T4,-T14)",
+    "taughtby(-T12,-T4,+T14)",
+    "taughtby(+T12,-T4,-T14)",
+    "ta(-T12,+T5,-T14)",
+    "ta(-T12,-T5,+T14)",
+    "ta(+T12,-T5,-T14)",
+    "publication(+T36,-T4)",
+    "publication(+T36,-T5)",
+    "publication(-T36,+T4)",
+    "publication(-T36,+T5)"
+  ],
+  "spName": "UWCSEProcedure"
+}

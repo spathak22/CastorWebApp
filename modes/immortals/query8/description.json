@@ -1,0 +1,3 @@
+{
+  "ExpectedQuery": " select s.id, s.name, ce.id, ce.servertime, ce.tilex, ce.tiley from source s join cot_event ce on s.id = ce.source_id where s.name = ? and time = ?	 "
+}

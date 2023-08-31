@@ -1,0 +1,4 @@
+{
+  "Description": "Select query with where clause conditions and AND operator",
+  "ExpectedQuery": " select id, source_id, cot_type, how from cot_event where servertime = 201705071635 and cot_type = 'a-n-A-C-F-m' "
+}

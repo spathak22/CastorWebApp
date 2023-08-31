@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Castor</title>
+
+    <!--<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>-->
+
+    <!-- Bootstrap -->
+    <link href="css/bootstrap-paper-custom.css" rel="stylesheet">
+
+    <link href="css/custom.css" rel="stylesheet">
+    <!--<link href="css/sb-admin-2.css" rel="stylesheet">-->
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+<!-- container -->
+<div id="mainContainer" class="container">
+
+    <ul class="nav nav-tabs default-primary-color roundedTopCorners">
+
+        <li class="active h5Size"><a data-toggle="tab" href="#automodeTab">Castor: A Relational Learning System</a></li>
+        <!--<li><a class="h5Size" data-toggle="tab" href="#typegraphTab" onclick="loadAutomodeExact()">Join Graph</a></li>-->
+        <!--li><a data-toggle="tab" href="#learnTab">Castor Relational Learning</a></li-->
+        <!--li><a data-toggle="tab" href="#compareTab">Schema Independence</a></li-->
+        <!--<li><a data-toggle="tab" href="#testTab">Test</a></li>-->
+        <!--li class="pull-right">
+          Castor
+          <img src="images/castor1-tr.png" height="40"/>
+        </li-->
+        <!--<li class="pull-right dropdown">-->
+        <!--<a class="h5Size dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false">-->
+        <!--Datasets <span class="caret"></span>-->
+        <!--</a>-->
+        <!--<ul class="dropdown-menu">-->
+        <!--<li><a onclick="loadUWCSEDataset();">Immortals</a></li>-->
+        <!--&lt;!&ndash;li class="divider"></li>-->
+        <!--<li><a onclick="loadIMDbDataset();">IMDb</a></li&ndash;&gt;-->
+        <!--</ul>-->
+        <!--</li>-->
+
+    </ul>
+
+    <!-- tab-content -->
+    <div class="tab-content">
+
+        <!-- automode -->
+        <div id="automodeTab" class="tab-pane fade in active">
+            <!-- automodeTabContent -->
+            <div id="automodeTabContent" class="col-md-12 roundedBottomCorners tabContent">
+
+                <!-- schemas and modes -->
+                <div class="col-md-12">
+                    <h4 id="automodeSchemaTitle">Immortals Database</h4>
+                </div>
+                <div class="col-md-12">
+                    <!-- schema -->
+                    <div class="col-md-6">
+                        <!--div>
+                          <h4 id="automodeSchemaTitle">Schema</h4>
+                        </div-->
+                        <div class="col-md-12">
+                            <label class="h5Size">Database schema</label>
+                            <div id="automodeTabSchema"></div>
+                        </div>
+                    </div>
+                    <!-- /schema -->
+
+                    <!-- modes -->
+                    <div class="col-md-6">
+                        <div class="col-md-12">
+
+                            <label for="automodeTabSelect" class="h5Size col-md-6 control-label">Target
+                                relation:</label>
+                            <div class="col-md-6">
+                                <select class="form-control" id="select_query" onchange="selectQuery(this)">
+                                    <option value="query1">Query1</option>
+                                    <option value="query3">Query3</option>
+                                    <option value="query5">Query5</option>
+                                </select>
+                            </div>
+                        </div>
+
+
+                        <div class="col-md-12">
+                            <div class="col-md-12">
+                                <p id="query_description"></p>
+                                <p id="expected_query"></p>
+                            </div>
+                        </div>
+
+
+                        <div class="col-md-12">
+                            <div class="col-md-12">
+                                <input type="checkbox" id="showHypothesisLanguage" value="no"
+                                       onclick='hypothesisLanguageCheckboxClick(this)'>
+                                <label class="h5Size" for="showHypothesisLanguage">Show Hypothesis Language</label>
+                            </div>
+                        </div>
+
+                        <div id="hypothesisLanguageDiv" class="col-md-12">
+                            <label for="automodeTabSelect" class="h5Size col-md-6 control-label">Training Data:</label>
+                            <div class="col-md-6">
+                                <select class="form-control" id="modesSelect"
+                                        onchange="selectModesChangedAutomodeTab()">
+                                    <option value="manualtuned">Manual tuned</option>
+                                    <option value="automode">Automode</option>
+                                </select>
+                            </div>
+
+                            <div class="col-md-12">
+                                <div class="bordered roundedCorners">
+                                    <textarea class="form-control" rows="7" id="automodeTabModes"
+                                    ></textarea>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                        <div class="col-md-12">
+                            <div class="col-md-12">
+                                <input type="checkbox" id="showTrainingExamples" value="no"
+                                       onclick='trainingExamplesCheckboxClick(this)'>
+                                <label class="h5Size" for="showTrainingExamples">Show Training Data</label>
+                            </div>
+                        </div>
+
+                        <div id="trainingExamplesDiv" class="col-md-12">
+                            <label for="automodeTabSelect" class="h5Size col-md-6 control-label">Training Data:</label>
+                            <div class="col-md-6">
+                                <select class="form-control" id="examplesSelect"
+                                        onchange="selecExamplesChangedAutomodeTab()">
+                                    <option value="_all_pos">Positive examples</option>
+                                    <option value="_all_neg">Negative examples</option>
+                                </select>
+                            </div>
+
+                            <div class="col-md-12">
+                                <div class="bordered roundedCorners">
+                                    <textarea class="form-control" rows="7" id="automodeTabExamples"
+                                              oninput="enableSaveButton()"></textarea>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+
+
+
+                        <div class="col-md-12">
+                            <!-- learn button -->
+                            <div class="col-md-12">
+                                <div id="automodeButtonDiv" class="col-md-12 text-center">
+                                    <a href="#" class="btn btn-primary btn-lg h4Size" id="automodeLearnButton">Learn</a>
+                                    <a href="#" class="btn btn-primary btn-lg h4Size" disabled="true"
+                                       id="automodeSaveButton" onclick="saveExamples()">Save</a>
+                                </div>
+                            </div>
+
+                        </div>
+                        <!-- /learn button -->
+
+                    </div>
+                    <!-- /modes -->
+
+                </div>
+                <!-- /schemas and modes -->
+
+                <div id="spinnerDiv"></div>
+
+                <!-- results automode -->
+                <div id="autmomodeResultsDiv" class="col-md-12">
+                    <ul class="nav nav-tabs default-primary-color roundedTopCorners">
+                        <li class="active"><a data-toggle="tab" href="#automodeResultsTab" class="h5Size">Results</a>
+                        </li>
+                        <li class="pull-right"><a href="#" class="h5Size" id="automodeClearButton">Clear</a></li>
+                    </ul>
+
+                    <div class="tab-content col-md-12 tabContent">
+
+                        <!-- automodeResultsTab -->
+                        <div id="automodeResultsTab" class="tab-pane fade in active">
+                            <div class=" col-md-6">
+                                <h4 class="text-center" id="">Learned query</h4>
+                                <!--label for="automodeTab-selectMenu-schema1" class="col-md-4 control-label"><h4 class="h5Size">Show clause</h4></label>
+                                <div class="col-md-3">
+                                  <select class="form-control" id="automodeTab-selectMenu" onchange="selectClauseChangedAutomodeTab(this)">
+                                  </select>
+                                </div>
+                                <div class="col-md-5"><h4 class="h5Size">of <span id="automodeTab-numberOfClauses"></span> clause(s)</h4></div-->
+
+                                <div class="col-md-12 bordered roundedCorners">
+                                    <textarea class="form-control" rows="6" id="automodeTabDatalog"></textarea>
+                                </div>
+
+                            </div>
+                            <div class=" col-md-6">
+                                <h4 class="text-center">Effectiveness and efficiency</h4>
+                                <table class="table table-hover">
+                                    <tbody>
+                                    <tr>
+                                        <td><h5>Precision</h5></td>
+                                        <td><h5 id="automodeEffectiveness-precision"></h5></td>
+                                    </tr>
+                                    <tr>
+                                        <td><h5>Recall</h5></td>
+                                        <td><h5 id="automodeEffectiveness-recall"></h5></td>
+                                    </tr>
+                                    <!--<tr>
+                                      <td><h5>F1-score</h5></td>
+                                      <td><h5 id="learnEffectiveness-f1"></h5></td>
+                                    </tr>-->
+                                    <tr>
+                                        <td><h5>Time (s)</h5></td>
+                                        <td><h5 id="automodeEffectiveness-time"></h5></td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <!-- /automodeResultsTab -->
+
+                    </div>
+
+                </div>
+                <!-- /results automode -->
+
+            </div>
+            <!-- /automodeTabContent -->
+        </div>
+        <!-- /automode -->
+
+        <!-- typegraph -->
+        <div id="typegraphTab" class="tab-pane fade in">
+            <!-- typegraphTabContent -->
+            <div id="typegraphTabContent" class="col-md-12 roundedBottomCorners tabContent">
+
+                <div class="col-md-12">
+                    <div class="col-md-4" id="c1">
+                        <h5>Hypothesis language</h5>
+                        <div>
+                            <div class="col-md-12">
+                                <input type="radio" name="checkfield" id="autoModeOption" checked="checked"
+                                       onclick="loadAutomodeExact()"/>
+                                <label class="h5Size" for="autoModeOption">AutoMode</label>
+                                <input type="checkbox" name="checkfield" id="automodeApproxOption"
+                                       onclick="loadAutomodeApprox()"/>
+                                <label class="h5Size" for="automodeApproxOption">Approx</label>
+                            </div>
+                            <div class="col-md-12">
+                                <input type="radio" name="checkfield" id="loadManualTunedOption"
+                                       onclick="loadManualTuned()"/>
+                                <label class="h5Size" for="loadManualTunedOption">Manual</label>
+                            </div>
+                            <div class="col-md-12">
+                                <input type="radio" name="checkfield" id="baseLineOption" onclick="loadBaseline()"/>
+                                <label class="h5Size" for="baseLineOption">Baseline</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-8">
+                        <div id="typegraph"></div>
+                    </div>
+                </div>
+            </div>
+            <!-- /typegraphTabContent -->
+        </div>
+        <!-- /typegraph -->
+
+    </div>
+    <!-- /tab-content -->
+
+</div>
+<!-- /container -->
+
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>-->
+<script src="js/jquery-3.1.0.min.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="js/bootstrap.min.js"></script>
+
+<script type="text/javascript" src="js/cytoscape.js"></script>
+<script type="text/javascript" src="js/spin.js"></script>
+
+<script type="text/javascript" src="js/learnRealFunction.js"></script>
+<script type="text/javascript" src="js/learnTabFunctions.js"></script>
+<script src="schemas/automodeTab-immortals/code-public.js"></script>
+
+<script type="text/javascript" src="js/typegraph.js"></script>
+</body>
+</html>

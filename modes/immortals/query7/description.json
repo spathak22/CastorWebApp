@@ -1,0 +1,3 @@
+{
+  "ExpectedQuery": " select s.name, ce.id, ce.cot_type, ce.servertime from source s join cot_event ce on s.id = ce.source_id join cot_event_position cep on ce.id = cep.cot_event_id where  s.channel = 3 and tilex = 18830 and tiley = 25704 channel= 6  "
+}
